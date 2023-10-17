@@ -1,0 +1,23 @@
+import { EthAdapter, SafeSignature, SafeEIP712Args } from '@safe-global/safe-core-sdk-types'
+export declare function generatePreValidatedSignature(ownerAddress: string): SafeSignature
+export declare function isTxHashSignedWithPrefix(
+  txHash: string,
+  signature: string,
+  ownerAddress: string
+): boolean
+type AdjustVOverload = {
+  (signingMethod: 'eth_signTypedData', signature: string): string
+  (signingMethod: 'eth_sign', signature: string, safeTxHash: string, sender: string): string
+}
+export declare const adjustVInSignature: AdjustVOverload
+export declare function generateSignature(
+  ethAdapter: EthAdapter,
+  hash: string
+): Promise<SafeSignature>
+export declare function generateEIP712Signature(
+  ethAdapter: EthAdapter,
+  safeEIP712Args: SafeEIP712Args,
+  methodVersion?: 'v3' | 'v4'
+): Promise<SafeSignature>
+export declare const buildSignature: (signatures: SafeSignature[]) => string
+export {}
